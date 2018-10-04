@@ -97,4 +97,5 @@ prepare_turtle_canvas()
 draw_curve_4_points(points[n - 1], points[n], points[n + 1], points[n + 2])
 
 
+
 turtle.done()
