@@ -3,13 +3,15 @@ from pico2d import *
 import main_state
 
 
-name = "TitleState"
+name = "PauseState"
 image = None
 
 
 def enter():
     global image
-    image = load_image('title.png')
+    global blink
+    blink = 0
+    image = load_image('pause(change).png')
     pass
 
 
@@ -25,27 +27,25 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         else:
-            if(event.type, event.key) ==(SDL_KEYDOWN, SDLK_ESCAPE):
+            if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-            elif(event.type, event.key):
-                game_framework.change_state(main_state)
-
+            elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_p):
+                resume()
     pass
 
 
 def draw():
     clear_canvas()
-    image.draw(400, 300)
+    main_state.draw()
+    if(blink < 1):
+        image.draw(400, 300)
     update_canvas()
     pass
 
 
-
-
-
-
-
 def update():
+    global blink
+    blink = (blink + 0.05) % 4
     pass
 
 
@@ -54,5 +54,6 @@ def pause():
 
 
 def resume():
+    game_framework.pop_state()
     pass
 
