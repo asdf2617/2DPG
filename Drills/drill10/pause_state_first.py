@@ -3,13 +3,13 @@ from pico2d import *
 import main_state
 
 
-name = "pause_state"
+name = "PauseState"
 image = None
 
 
 def enter():
     global image
-    image = load_image('Pause.png')
+    image = load_image('pause.png')
     pass
 
 
@@ -48,6 +48,6 @@ def pause():
 
 
 def resume():
-    game_framework.change_state(main_state)
+    game_framework.pop_state()
     pass
 
